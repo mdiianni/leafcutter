@@ -1,4 +1,8 @@
 import { Sun, Moon } from 'lucide-react';
+// Imported (not referenced via /public) and force-inlined as a base64 data URI so
+// the logo survives vite-plugin-singlefile's HTML export (standalone file, no
+// server, works from file://) as well as the normal dev/preview server.
+import logoUrl from '../assets/logo.png?inline';
 
 const ENVS = ['dev', 'stg', 'prd'] as const;
 type Env = typeof ENVS[number] | 'all';
@@ -43,7 +47,7 @@ export default function Header({
   return (
     <header className="header">
       <div className="header-logo">
-        <img className="header-logo-icon" src="/logo.png" alt="leafcutter logo" />
+        <img className="header-logo-icon" src={logoUrl} alt="leafcutter logo" />
         <span className="header-title">leafcutter</span>
       </div>
       <div className="header-spacer" />
