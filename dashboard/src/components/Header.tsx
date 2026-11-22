@@ -1,4 +1,4 @@
-import { Sun, Moon, BarChart2 } from 'lucide-react';
+import { Sun, Moon } from 'lucide-react';
 
 const ENVS = ['dev', 'stg', 'prd'] as const;
 type Env = typeof ENVS[number] | 'all';
@@ -43,10 +43,8 @@ export default function Header({
   return (
     <header className="header">
       <div className="header-logo">
-        <div className="header-logo-icon">
-          <BarChart2 size={18} />
-        </div>
-        <span className="header-title">AWS Cost Analyser</span>
+        <img className="header-logo-icon" src="/logo.png" alt="leafcutter logo" />
+        <span className="header-title">leafcutter</span>
       </div>
       <div className="header-spacer" />
       {reportVersion && (

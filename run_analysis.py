@@ -549,6 +549,8 @@ def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
 
+    print(f"{green('🌿')} {bold('leafcutter')} {grey('— Cloud cost analysis')}\n")
+
     # ── --list-services ──────────────────────────────────────────────────────
     if args.list_services:
         print(bold("\nAvailable AWS service analysers:\n"))
