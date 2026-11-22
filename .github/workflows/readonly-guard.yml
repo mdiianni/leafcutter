@@ -1,0 +1,23 @@
+name: Read-only guard
+
+# leafcutter's core trust guarantee is that it never modifies AWS resources. This
+# workflow runs a static check on every push/PR to catch any accidental or
+# AI-suggested mutating AWS API call before it merges. See scripts/check_readonly.py
+# and AGENTS.md for details.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  readonly-guard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Scan analysers for mutating AWS API calls
+        run: python3 scripts/check_readonly.py
