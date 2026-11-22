@@ -1,0 +1,9 @@
+{
+  "_comment": "Copy this file to accounts.json and fill in your own account IDs. accounts.json is gitignored.",
+  "123456789012": {"name": "my-app",      "env": "dev", "group": "my-app"},
+  "234567890123": {"name": "my-app",      "env": "stg", "group": "my-app"},
+  "345678901234": {"name": "my-app",      "env": "prd", "group": "my-app"},
+  "456789012345": {"name": "platform",    "env": "dev", "group": "platform"},
+  "567890123456": {"name": "platform",    "env": "prd", "group": "platform"},
+  "678901234567": {"name": "core-infra",  "env": "prd", "group": "core"}
+}

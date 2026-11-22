@@ -1,0 +1,43 @@
+# ── Environment / secrets ────────────────────────────────────────────────────
+accounts.json
+accounts/
+.env
+*.pem
+
+# ── Generated data & caches (regenerated locally per account/region) ────────
+cache/
+output/
+dashboard_data.json
+dashboard/public/dashboard_data.json
+releases/
+*.zip
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+bin/
+lib/
+include/
+path/
+share/
+pyvenv.cfg
+*.egg-info/
+
+# ── Node / dashboard build ────────────────────────────────────────────────────
+dashboard/node_modules/
+dashboard/dist/
+node_modules/
+
+# ── Roadmap / presentation output (generated, account-specific) ─────────────
+roadmap/*.png
+roadmap/.*_hash
+output_presentations/
+*.pptx
+
+# ── Editor / OS ───────────────────────────────────────────────────────────────
+.DS_Store
+.vscode/
+.idea/

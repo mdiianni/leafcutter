@@ -1,0 +1,13 @@
+# AWS Cost Analyser — Python dependencies
+#
+# Install with:
+#   pip install -r requirements.txt
+#
+# Or let run_analysis.py handle it automatically on first run.
+
+# AWS SDK — core dependency for all service analysers
+boto3>=1.34.0
+
+# Office document generation (PowerPoint presentation export)
+python-pptx>=1.0.0
+matplotlib>=3.8.0

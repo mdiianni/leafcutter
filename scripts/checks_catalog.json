@@ -1,0 +1,305 @@
+{
+  "amp": [
+    "amp-long-retention",
+    "amp-high-cardinality",
+    "amp-unused-workspace",
+    "amp-multiple-workspaces"
+  ],
+  "apigw": [
+    "apigw-idle-apis",
+    "apigw-poc-api",
+    "apigw-duplicate-stages",
+    "apigw-rest-to-http-migration",
+    "apigw-idle-websocket",
+    "apigw-api-cache-configured-but-disabled",
+    "apigw-api-keys-audit",
+    "apigw-missing-access-logs"
+  ],
+  "bedrock": [
+    "bedrock-idle-provisioned-throughput",
+    "bedrock-unused-custom-model",
+    "bedrock-model-right-sizing",
+    "bedrock-dual-invocation-logging",
+    "bedrock-guardrail-not-published"
+  ],
+  "billing": [
+    "billing-coverage-gap",
+    "cross-az-data-transfer",
+    "ebs-over-provisioned",
+    "sp-coverage-gap",
+    "sp-active-info",
+    "billing-cost-spike"
+  ],
+  "cloudwatch": [
+    "cloudwatch-vpc-flow-logs-to-s3",
+    "cloudwatch-eks-log-filtering",
+    "cloudwatch-container-insights-metrics",
+    "cloudwatch-container-insights-dev-scope",
+    "cloudwatch-logs-no-retention",
+    "cloudwatch-zombie-alarms",
+    "cloudwatch-insufficient-data-alarms",
+    "cloudwatch-unused-dashboards",
+    "cloudwatch-idle-metric-stream",
+    "cloudwatch-metric-stream-duplicate-namespace"
+  ],
+  "config": [
+    "config-high-item-recording-cost",
+    "config-conformance-pack-overlap",
+    "config-delivery-bucket-no-lifecycle",
+    "config-rules-no-remediation",
+    "config-all-resources-all-regions"
+  ],
+  "datasync": [
+    "datasync-error-task",
+    "datasync-idle-task",
+    "datasync-transfer-cost-estimate",
+    "datasync-no-schedule"
+  ],
+  "dax": [
+    "dax-idle-cluster",
+    "dax-low-cache-hit-rate",
+    "dax-single-node",
+    "dax-graviton-migration",
+    "dax-oversized-node"
+  ],
+  "ebs": [
+    "ebs-gp2-to-gp3",
+    "ebs-io1-to-io2",
+    "ebs-orphaned-volume",
+    "ebs-old-snapshots",
+    "ebs-orphaned-snapshot",
+    "ebs-iops-overprovision"
+  ],
+  "ec2": [
+    "savings-plan-gap",
+    "savings-plan-active",
+    "compute-savings-plan",
+    "reserved-instance",
+    "instance-family-upgrade",
+    "graviton-migration",
+    "right-sizing",
+    "stopped-instance"
+  ],
+  "ecr": [
+    "ecr-missing-lifecycle-policy",
+    "ecr-untagged-images",
+    "ecr-stale-repository",
+    "ecr-empty-repositories",
+    "ecr-broad-replication",
+    "ecr-no-image-scanning",
+    "expire"
+  ],
+  "ecs": [
+    "ecs-zombie-service",
+    "ecs-autoscaling-locked",
+    "ecs-no-autoscaling",
+    "ecs-cpu-overprovision",
+    "ecs-memory-overprovision",
+    "ecs-graviton-fargate",
+    "ecs-no-container-insights"
+  ],
+  "efs": [
+    "efs-no-lifecycle-policy",
+    "efs-provisioned-throughput",
+    "efs-unused-filesystem",
+    "efs-single-az-opportunity",
+    "efs-intelligent-tiering-savings"
+  ],
+  "eks": [
+    "eks-no-container-insights",
+    "eks-cluster-logging-cost",
+    "eks-extended-support",
+    "eks-instance-family-upgrade",
+    "eks-graviton-migration",
+    "eks-scheduled-scale-down",
+    "eks-spot-instances",
+    "eks-node-right-sizing"
+  ],
+  "elasticache": [
+    "elasticache-severely-underutilized",
+    "elasticache-graviton-migration",
+    "elasticache-no-replica-dev"
+  ],
+  "elb": [
+    "elb-idle-load-balancer",
+    "elb-unhealthy-targets",
+    "elb-low-traffic"
+  ],
+  "emr": [
+    "emr-idle-cluster",
+    "emr-spot-task-nodes",
+    "emr-graviton-migration",
+    "emr-oversized-cluster",
+    "emr-persistent-to-transient",
+    "emr-serverless-opportunity"
+  ],
+  "global": [
+    "r53-empty-zones",
+    "r53-disabled-health-checks",
+    "r53-no-health-checks",
+    "cf-no-compression",
+    "cf-no-waf",
+    "cf-http-version",
+    "s3-cross-region-costs"
+  ],
+  "glue": [
+    "glue-dev-endpoint-running",
+    "glue-job-flex-execution",
+    "glue-job-autoscaling-disabled",
+    "glue-job-overprovisioned-worker",
+    "glue-job-high-timeout",
+    "glue-job-stale",
+    "glue-crawler-always-failing",
+    "glue-crawler-no-schedule",
+    "glue-workflow-inactive",
+    "glue-job-old-version"
+  ],
+  "guardduty": [
+    "guardduty-stale-findings",
+    "guardduty-no-suppression-filters",
+    "guardduty-no-export-destination",
+    "guardduty-cloudtrail-high-cost",
+    "guardduty-eks-audit-logs-disabled",
+    "guardduty-ecs-runtime-monitoring-disabled",
+    "guardduty-no-threat-intel"
+  ],
+  "kinesis": [
+    "kinesis-evaluate-on-demand",
+    "kinesis-stream-purpose",
+    "kinesis-extended-retention"
+  ],
+  "kms": [
+    "kms-unused-cmk",
+    "kms-disabled-cmk",
+    "kms-pending-deletion",
+    "kms-no-rotation",
+    "kms-aws-managed-candidate"
+  ],
+  "lambda": [
+    "lambda-deprecated-runtimes",
+    "lambda-idle-functions",
+    "lambda-high-memory-java",
+    "lambda-x86-to-arm64"
+  ],
+  "msk": [
+    "msk-graviton-migration",
+    "msk-oversized-storage",
+    "msk-t3-burstable-risk",
+    "msk-consider-serverless"
+  ],
+  "opensearch": [
+    "opensearch-graviton-migration",
+    "opensearch-dedicated-master-count",
+    "opensearch-overprovisioned-cpu",
+    "opensearch-no-ultrawarm"
+  ],
+  "pinpoint": [
+    "pinpoint-test-apps",
+    "pinpoint-zero-delivery-apps",
+    "pinpoint-prd-apps-in-dev-account",
+    "pinpoint-no-phone-numbers",
+    "pinpoint-sms-spend-limit"
+  ],
+  "quicksight": [
+    "qs-inactive-author-seats",
+    "qs-spice-over-capacity",
+    "qs-reader-session-pricing",
+    "qs-enterprise-edition-review"
+  ],
+  "rds": [
+    "rds-graviton-migration",
+    "rds-reserved-instance",
+    "rds-gp2-to-gp3",
+    "rds-idle-instance",
+    "rds-multiaz-dev",
+    "rds-storage-oversized",
+    "rds-aurora-serverless-v1"
+  ],
+  "redshift": [
+    "redshift-paused-idle-cluster",
+    "redshift-reserved-node-opportunity",
+    "redshift-graviton-migration",
+    "redshift-cluster-right-sizing",
+    "redshift-serverless-opportunity",
+    "redshift-snapshot-retention",
+    "redshift-serverless-reservation-opportunity"
+  ],
+  "s3": [
+    "s3-empty-bucket",
+    "s3-missing-lifecycle",
+    "s3-versioning-cost",
+    "s3-intelligent-tiering",
+    "s3-rrs-deprecated",
+    "s3-crr-cost"
+  ],
+  "sagemaker": [
+    "sagemaker-sp-gap",
+    "sagemaker-no-savings-plan",
+    "sagemaker-idle-notebook",
+    "sagemaker-idle-endpoint",
+    "sagemaker-ondemand-training",
+    "sagemaker-graviton-endpoint",
+    "sagemaker-studio-idle-kernels",
+    "sagemaker-oversized-notebook"
+  ],
+  "secrets_manager": [
+    "secrets-no-rotation",
+    "secrets-orphaned",
+    "secrets-vs-ssm-params",
+    "secrets-no-resource-policy"
+  ],
+  "ses": [
+    "ses-unverified-identity",
+    "ses-no-configuration-set-suppression",
+    "ses-no-dmarc-enforcement",
+    "ses-dedicated-ip-underutilised",
+    "ses-low-utilisation"
+  ],
+  "sns": [
+    "sns-test-poc-topics",
+    "sns-idle-topics",
+    "sns-topics-no-subscriptions",
+    "sns-healthcheck-no-subs",
+    "sns-duplicate-topic-names",
+    "sns-fifo-topics"
+  ],
+  "sqs": [
+    "sqs-dlq-backlog",
+    "sqs-queue-no-dlq",
+    "sqs-idle-queues",
+    "sqs-fifo-vs-standard",
+    "sqs-large-backlog-non-dlq"
+  ],
+  "ssm": [
+    "ssm-stale-parameters",
+    "ssm-no-expiration-policies",
+    "ssm-advanced-params-cost",
+    "ssm-flat-params",
+    "ssm-string-type-credentials"
+  ],
+  "transfer": [
+    "transfer-idle-server",
+    "transfer-low-usage-server",
+    "transfer-high-egress-cost",
+    "transfer-protocol-consolidation",
+    "transfer-efs-backend-cost"
+  ],
+  "vpc": [
+    "vpc-duplicate-execute-api-endpoints",
+    "vpc-transit-gateway-utilization",
+    "vpc-interface-endpoint-review",
+    "vpc-unassociated-elastic-ips"
+  ],
+  "waf": [
+    "waf-zero-traffic-investigation",
+    "waf-rule-count",
+    "waf-managed-rule-group-cost"
+  ],
+  "xray": [
+    "xray-cost-spike",
+    "xray-sampling-rate-high",
+    "xray-sampling-rules-optimise",
+    "xray-kms-encryption",
+    "xray-not-in-use"
+  ]
+}

@@ -1,0 +1,51 @@
+# Dockerfile.test — AWS Cost Analyser end-to-end test container
+# ──────────────────────────────────────────────────────────────
+# Platform: linux/amd64  (explicitly set for cross-arch testing on Apple Silicon)
+#
+# Runtime stack:
+#   • Python 3.11-slim  — all 29 service analyser scripts
+#   • Node.js 20 LTS    — Vite dashboard build (required for --html export)
+#   • unzip, curl       — ZIP extraction + AWS CLI health-checks
+#
+# Build:
+#   docker build --platform linux/amd64 -t aws-cost-analyser-test:latest -f Dockerfile.test .
+#
+# Run (see test-container.sh for the full orchestrated workflow):
+#   docker run --rm -it --platform linux/amd64 \
+#     -v ~/.aws:/root/.aws:ro \
+#     -e AWS_PROFILE=my-aws-profile \
+#     -p 8080:8080 \
+#     aws-cost-analyser-test:latest
+
+# Platform is enforced by the build command:  docker build --platform linux/amd64 ...
+ARG TARGETPLATFORM=linux/amd64
+FROM python:3.11-slim
+
+LABEL maintainer="aws-cost-analyser"
+LABEL description="End-to-end test environment for the AWS Static Cost Analyser"
+
+# ── System dependencies ───────────────────────────────────────────────────────
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        curl \
+        unzip \
+        ca-certificates \
+        gnupg \
+        procps \
+    && \
+    # ── Node.js 20 LTS via NodeSource ──────────────────────────────────────────
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y --no-install-recommends nodejs && \
+    # ── Cleanup ────────────────────────────────────────────────────────────────
+    apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# ── Working directory ─────────────────────────────────────────────────────────
+WORKDIR /aws-cost-analyser
+
+# ── Pip baseline (no third-party yet — run_analysis.py bootstraps from reqs) ─
+RUN pip install --no-cache-dir --upgrade pip
+
+# ── Dashboard port ────────────────────────────────────────────────────────────
+EXPOSE 8080
+
+# ── Default command: interactive bash shell ───────────────────────────────────
+CMD ["/bin/bash"]
