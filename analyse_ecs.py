@@ -4,7 +4,8 @@ AWS Cost Analyser — ECS Skill
 Implements analysis from skills/ecs.md (with real-world learnings applied)
 
 Key behaviours:
-  - Container Insights CloudWatch metrics for CPU + MEM per service (last 15 days)
+  - CloudWatch CPU + MEM metrics per service (last 15 days), via the basic
+    AWS/ECS namespace — available regardless of Container Insights
   - Fargate Graviton migration savings (ARM64 vs X86_64) with dependency warning
   - Overprovision detection for both CPU and Memory
   - Auto-scaling gap detection (min==max → can't scale in)
@@ -227,12 +228,12 @@ def collect(session):
             mem_mb    = int(td.get("memory", 512))
             arch      = td.get("runtimePlatform", {}).get("cpuArchitecture", "X86_64")
 
-            # CloudWatch metrics (only meaningful if Container Insights enabled)
-            cpu_avg = cpu_max = cpu_p95 = None
-            mem_avg = mem_max = mem_p95 = None
-            if ci_on:
-                cpu_avg, cpu_max, cpu_p95 = get_cw_metric(cw, cname, sname, "CPUUtilization")
-                mem_avg, mem_max, mem_p95 = get_cw_metric(cw, cname, sname, "MemoryUtilization")
+            # CloudWatch metrics — AWS/ECS CPUUtilization/MemoryUtilization are
+            # published per service regardless of Container Insights, so fetch
+            # them unconditionally. Container Insights only adds extra detail
+            # (e.g. per-task metrics), it is not required for these basics.
+            cpu_avg, cpu_max, cpu_p95 = get_cw_metric(cw, cname, sname, "CPUUtilization")
+            mem_avg, mem_max, mem_p95 = get_cw_metric(cw, cname, sname, "MemoryUtilization")
 
             enriched.append({
                 "cluster":        cname,
@@ -442,6 +443,9 @@ def analyse(data):
                 })
 
         # ── Container Insights not enabled ───────────────────────────────────
+        # Basic AWS/ECS CPU/MemoryUtilization metrics are still collected above
+        # regardless of this setting, so right-sizing isn't blocked — but
+        # Container Insights adds per-task granularity and richer diagnostics.
         if not ci_on:
             opps.append({
                 "cluster": cname, "service": sname,
@@ -450,9 +454,10 @@ def analyse(data):
                 "dep_warning": "",
                 "recommendation": (
                     f"Cluster '{cname}' does not have Container Insights enabled. "
-                    f"CPU and memory utilisation metrics are unavailable, making "
-                    f"right-sizing analysis impossible for '{sname}'. "
-                    f"Enable Container Insights on the cluster."
+                    f"Basic CPU/memory averages are still used for '{sname}', "
+                    f"but per-task metrics and richer diagnostics are unavailable. "
+                    f"Consider enabling Container Insights on the cluster for deeper visibility "
+                    f"(note: it has its own additional cost)."
                 ),
             })
 

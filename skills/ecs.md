@@ -128,9 +128,10 @@ cw.get_metric_statistics(
 - ECS service + task definition metadata: **24 hours**
 - CloudWatch CPU/MEM metrics: **6 hours**
 
-> 💡 CloudWatch ECS metrics are only available if the ECS cluster has **Container Insights** enabled.
-> If metrics are unavailable, downgrade to a `LOW` severity and note "Enable Container Insights
-> for detailed utilisation analysis."
+> 💡 Basic CloudWatch `AWS/ECS` CPUUtilization/MemoryUtilization metrics (ClusterName+ServiceName
+> dimensions) are published **regardless of Container Insights** — always fetch them. Container
+> Insights only adds extra detail (per-task metrics, richer diagnostics); its absence should not
+> block right-sizing analysis.
 
 ---
 
@@ -316,11 +317,13 @@ monthly_saving   = current_monthly - arm_monthly
 
 **Detection logic:**
 - `describe_clusters` → `settings` does not include `{"name": "containerInsights", "value": "enabled"}`.
+- This does **not** block CPU/MEM metric collection (basic `AWS/ECS` metrics are always available);
+  it only means per-task granularity and richer diagnostics are missing.
 
 **Recommendation:**
-> "ECS cluster '{cluster}' does not have Container Insights enabled. Without it, CPU and memory
-> utilisation metrics per service are unavailable, making right-sizing analysis impossible.
-> Enable Container Insights to unlock cost optimisation data."
+> "ECS cluster '{cluster}' does not have Container Insights enabled. Basic CPU/memory averages
+> are still used for '{service}', but per-task metrics and richer diagnostics are unavailable.
+> Consider enabling Container Insights on the cluster for deeper visibility."
 
 > Note: Container Insights has a small cost (~$0.50/million metrics). Include this in the note.
 
